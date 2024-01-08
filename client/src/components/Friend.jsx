@@ -1,5 +1,4 @@
 import UserImage from "components/UserImage";
-import WidgetWrapper from "components/WidgetWrapper";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +41,12 @@ const Friend = ({ friendId, userPicturePath, location, name }) => {
     <FlexBetween>
       <FlexBetween gap="1rem">
         <UserImage image={userPicturePath} size="55px" />
-        <Box>
+        <Box
+          onClick={() => {
+            navigate(`/profile/${friendId}`);
+            navigate(0);
+          }}
+        >
           <Typography
             color={main}
             variant="h5"
