@@ -23,7 +23,7 @@ const Friend = ({ friendId, userPicturePath, location, name }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
+      `https://chat-app-api-delta.vercel.app/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {
