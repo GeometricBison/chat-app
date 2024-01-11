@@ -29,7 +29,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({
-  origin: "",
+  origin: "https://chat-app-frontend-7jog5qrux-kevins-projects-d11c5933.vercel.app/",
   methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
   credentials: true
 }));
