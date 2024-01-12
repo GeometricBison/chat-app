@@ -28,12 +28,8 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors({
-  origin: "https://chat-app-frontend-7jog5qrux-kevins-projects-d11c5933.vercel.app/",
-  methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
-  credentials: true
-}));
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+app.use(cors());
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 //FILE STORAGE//
 const storage = multer.diskStorage({
@@ -42,7 +38,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-  }
+  },
 });
 const upload = multer({ storage: storage });
 
@@ -57,15 +53,16 @@ app.use("/posts", postRoutes);
 
 //MONGOOSE//
 const port = process.env.PORT || 6001;
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  app.listen(port, () => console.log(`Server Port: ${port}`));
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(port, () => console.log(`Server Port: ${port}`));
 
-  //ADD DATA//
-  // User.insertMany(users);
-  // Post.insertMany(posts);
-})
-  .catch((error) => console.log(`${error} did not connect`))
-
+    //ADD DATA//
+    // User.insertMany(users);
+    // Post.insertMany(posts);
+  })
+  .catch((error) => console.log(`${error} did not connect`));
